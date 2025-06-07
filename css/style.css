@@ -1,0 +1,171 @@
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /* https://kilianvalkhof.com/2022/css-html/your-css-reset-needs-text-size-adjust-probably/ */
+  html {
+    -moz-text-size-adjust: none;
+    -webkit-text-size-adjust: none;
+    text-size-adjust: none;
+  }
+
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  figure,
+  blockquote,
+  dl,
+  dd {
+    margin: 0;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    min-block-size: 100vh;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  button,
+  input {
+    line-height: 1.1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  img,
+  picture {
+    max-inline-size: 100%;
+    height: auto;
+    vertical-align: middle;
+    background-repeat: no-repeat;
+    background-size: cover;
+    shape-margin: 1rem;
+    font-style: italic;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+}
+
+@layer base {
+  @layer root {
+    :root {
+      /* ===== Primitives ===== */
+      --clr-red-50: hsl(13, 100%, 96%);
+      --clr-red-300: hsl(12, 91%, 72%);
+      --clr-red-500: hsl(12, 88%, 59%);
+      --clr-red-600: hsl(0, 100%, 50%);
+      --clr-gray-50: hsl(0, 0%, 98%);
+      --clr-gray-500: hsl(0, 0%, 55%);
+      --clr-blue-400: hsl(227, 12%, 61%);
+      --clr-blue-800: hsl(228, 39%, 23%);
+      --clr-blue-900: hsl(233, 12%, 13%);
+
+      --fs-xs: 0.625rem;
+      --fs-sm: 0.8125rem;
+      --fs-md: 0.9375rem;
+      --fs-base: 1rem;
+      --fs-lg: clamp(1.875rem, 1.655rem + 0.939vi, 2.5rem);
+      --fs-xl: clamp(2.5rem, 2.148rem + 1.502vi, 3.5rem);
+
+      --ff-be-vietnam-pro: 'Be Vietnam Pro', sans-serif;
+      --lh-base: 1.62;
+      --lh-heading: 1.14;
+
+      /* ===== Design Tokens ===== */
+      --color-primary: var(--clr-blue-800);
+      --color-primary-dark: var(--clr-blue-900);
+      --color-secondary: var(--clr-red-500);
+      --color-accent: var(--clr-red-300);
+      --color-error: var(--clr-red-600);
+      --color-surface: var(--clr-gray-50);
+      --color-text: var(--clr-gray-500);
+
+      --font-size-xs: var(--fs-xs);
+      --font-size-sm: var(--fs-sm);
+      --font-size-md: var(--fs-md);
+      --font-size-base: var(--fs-base);
+      --font-size-lg: var(--fs-lg);
+      --font-size-xl: var(--fs-xl);
+
+      --line-height-body: var(--lh-base);
+      --line-height-heading: var(--lh-heading);
+      --ff-base: var(--ff-be-vietnam-pro);
+    }
+  }
+
+  @layer general-styling {
+    body {
+      --text-opacity: 0.525;
+      color: hsl(from var(--color-primary) h s l / var(--text-opacity));
+      font-family: var(--ff-base);
+      line-height: var(--line-height-body);
+    }
+
+    h1 {
+      line-height: var(--line-height-heading);
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: var(--color-primary);
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+}
+
+@layer layout {
+}
+
+@layer components {
+}
+
+@layer utilities {
+  [hidden] {
+    display: none;
+  }
+
+  .visually-hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+  }
+}
