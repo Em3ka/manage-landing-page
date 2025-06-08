@@ -7,39 +7,141 @@
       rel="icon"
       type="image/png"
       sizes="32x32"
-      href="./images/favicon-32x32.png"
-    />
+      href="./images/favicon-32x32.png" />
     <title>Frontend Mentor | Manage landing page</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <script src="js/main.js" defer></script>
   </head>
   <body>
-    <header></header>
-    <main></main>
+    <a class="skip-to-main" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <div class="wrapper">
+        <div class="site-header__inner">
+          <a href="/">
+            <img src="images/logo.svg" alt="Manage" />
+          </a>
+          <button
+            type="button"
+            aria-expanded="false"
+            aria-haspopup="true"
+            aria-controls="primary-nav"
+            aria-label="open main menu">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+          </button>
+          <nav
+            id="primary-nav"
+            class="primary-navigation"
+            aria-label="Primary Navigation">
+            <ul>
+              <li><a href="#">Pricing</a></li>
+              <li><a href="#">Product</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Community</a></li>
+            </ul>
+          </nav>
+          <a href="#" class="button">
+            Get Started
+            <span class="visually-hidden">
+              using manage for your software teams to plan your day-to-day tasks
+            </span>
+          </a>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="wrapper">
+          <div class="equal-column text-c-s">
+            <div class="hero__img-wrapper">
+              <!--Decorative image: no alt needed-->
+              <img
+                src="images/illustration-intro.svg"
+                alt=""
+                width="580"
+                height="525" />
+            </div>
+            <div class="self-center">
+              <h1 id="hero-heading">
+                Bring everyone together to build better products.
+              </h1>
+              <p>
+                Manage makes it simple for software teams to plan day-to-day
+                tasks while keeping the larger team goals in view.
+              </p>
+              <a href="#" class="button">
+                Get Started
+                <span class="visually-hidden">
+                  using manage for your software teams to plan your day-to-day
+                  tasks
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="features" aria-labelledby="features-heading">
+        <div class="wrapper">
+          <div class="equal-column">
+            <div class="text-c-s">
+              <h2 id="features-heading" class="features__title">
+                What’s different about Manage?
+              </h2>
+              <p class="features__body">
+                Manage provides all the functionality your team needs, without
+                the complexity. Our software is tailor-made for modern digital
+                product teams.
+              </p>
+            </div>
+            <div>
+              <ul class="features-list flow" aria-labelledby="features-heading">
+                <li class="feature">
+                  <span class="feature__count" aria-hidden="true">01</span>
+                  <h3 class="feature__title">Track company-wide progress</h3>
+                  <p class="feature__body">
+                    See how your day-to-day tasks fit into the wider vision. Go
+                    from tracking progress at the milestone level all the way
+                    down to the smallest of details. Never lose sight of the
+                    bigger picture again.
+                  </p>
+                </li>
+                <li class="feature">
+                  <span class="feature__count" aria-hidden="true">02</span>
+                  <h3 class="feature__title">Advanced built-in reports</h3>
+                  <p class="feature__body">
+                    Set internal delivery estimates and track progress toward
+                    company goals. Our customizable dashboard helps you build
+                    out the reports you need to keep key stakeholders informed.
+                  </p>
+                </li>
+                <li class="feature">
+                  <span class="feature__count" aria-hidden="true">03</span>
+                  <h3 class="feature__title">
+                    Everything you need in one place
+                  </h3>
+                  <p class="feature__body">
+                    Stop jumping from one service to another to communicate,
+                    store files, track tasks and share documents. Manage offers
+                    an all-in-one team productivity solution.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
     <footer></footer>
-    Pricing Product About Us Careers Community Get Started Bring everyone
-    together to build better products. Manage makes it simple for software teams
-    to plan day-to-day tasks while keeping the larger team goals in view. Get
-    Started What’s different about Manage? Manage provides all the functionality
-    your team needs, without the complexity. Our software is tailor-made for
-    modern digital product teams. 01 Track company-wide progress See how your
-    day-to-day tasks fit into the wider vision. Go from tracking progress at the
-    milestone level all the way done to the smallest of details. Never lose
-    sight of the bigger picture again. 02 Advanced built-in reports Set internal
-    delivery estimates and track progress toward company goals. Our customisable
-    dashboard helps you build out the reports you need to keep key stakeholders
-    informed. 03 Everything you need in one place Stop jumping from one service
-    to another to communicate, store files, track tasks and share documents.
-    Manage offers an all-in-one team productivity solution. What they’ve said
-    Anisha Li “Manage has supercharged our team’s workflow. The ability to
-    maintain visibility on larger milestones at all times keeps everyone
-    motivated.” Ali Bravo “We have been able to cancel so many other
+    What they’ve said Anisha Li “Manage has supercharged our team’s workflow.
+    The ability to maintain visibility on larger milestones at all times keeps
+    everyone motivated.” Ali Bravo “We have been able to cancel so many other
     subscriptions since using Manage. There is no more cross-channel confusion
     and everyone is much more focused.” Richard Watts “Manage allows us to
     provide structure and process. It keeps us organized and focused. I can’t
