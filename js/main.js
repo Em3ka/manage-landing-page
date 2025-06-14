@@ -1,30 +1,19 @@
-const swiper = new Swiper('.swiper', {
-  loop: true,
-  slidesPerView: 1,
-  keyboard: true,
-  centeredSlides: true,
-  observer: true,
-  observeParents: true,
-  watchOverflow: true,
-
+new Glide('.glide', {
+  type: 'carousel',
+  perView: 3,
+  autoplay: 3000,
+  animationDuration: 800,
+  gap: 30,
+  peek: { before: -120, after: -120 },
   breakpoints: {
-    // when window width is >= 1110px
     1110: {
-      slidesPerView: 2.58,
-      spaceBetween: 30,
+      perView: 2,
+      peek: 0,
+    },
+
+    870: {
+      perView: 1,
+      peek: 0,
     },
   },
-
-  // autoplay: {
-  //   delay: 5000,
-  // },
-
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-});
-
-const resizeObserver = new ResizeObserver(() => {});
-
-resizeObserver.observe(document.body);
+}).mount();
