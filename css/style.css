@@ -321,7 +321,7 @@
       inset-inline: 0;
       inset-block-start: var(--nav-offset);
       opacity: 0;
-      translate: 100% -0;
+      translate: 100% 0;
       background-color: var(--color-white);
       border-radius: 0.25rem;
       padding-block: 2.5rem;
