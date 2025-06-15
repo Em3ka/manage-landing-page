@@ -1,3 +1,10 @@
+const navToggle = document.querySelector('[aria-controls="primary-nav"]');
+const overlay = document.querySelector('.overlay');
+const primaryNav = document.getElementById('primary-nav');
+
+let resizeScheduled = false;
+const MOBILE_BREAKPOINT = 870;
+
 new Glide('.glide', {
   type: 'carousel',
   perView: 3,
@@ -17,3 +24,48 @@ new Glide('.glide', {
     },
   },
 }).mount();
+
+const isNavOpen = function () {
+  return navToggle.getAttribute('aria-expanded') === 'true';
+};
+
+const updateOverlay = function (state) {
+  overlay.toggleAttribute('hidden', !state);
+  [document.body, document.documentElement].forEach((el) => {
+    el.classList.toggle('no-scroll-y', state);
+  });
+};
+
+navToggle.addEventListener('click', () => {
+  const isExpanded = !isNavOpen();
+  navToggle.setAttribute('aria-expanded', isExpanded);
+  navToggle.setAttribute(
+    'aria-label',
+    isExpanded ? 'close main menu' : 'open main menu'
+  );
+  updateOverlay(isExpanded);
+});
+
+//Sync overlay state based on current viewport + nav state
+const syncOverlay = function () {
+  if (window.innerWidth >= MOBILE_BREAKPOINT) {
+    updateOverlay(false); // always hide overlay on desktop
+  } else {
+    updateOverlay(isNavOpen()); // show overlay if nav is open on mobile
+  }
+};
+
+const resizeObserver = new ResizeObserver(() => {
+  if (!resizeScheduled) {
+    resizeScheduled = true;
+    requestAnimationFrame(() => {
+      document.body.classList.add('resizing');
+      syncOverlay();
+
+      document.body.classList.remove('resizing');
+      resizeScheduled = false;
+    });
+  }
+});
+
+resizeObserver.observe(document.body);
