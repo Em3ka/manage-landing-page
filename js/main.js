@@ -1,14 +1,19 @@
+const primaryNav = document.getElementById('primary-nav');
 const navToggle = document.querySelector('[aria-controls="primary-nav"]');
 const overlay = document.querySelector('.overlay');
-const primaryNav = document.getElementById('primary-nav');
+const form = document.querySelector('.footer__form');
+const emailInputEl = document.getElementById('email');
+const emailErrorEl = document.getElementById('error-email');
 
+let currentError = '';
 let resizeScheduled = false;
 const MOBILE_BREAKPOINT = 870;
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,4}$/;
 
 new Glide('.glide', {
   type: 'carousel',
   perView: 3,
-  autoplay: 3000,
+  autoplay: 4000,
   animationDuration: 800,
   gap: 30,
   peek: { before: -120, after: -120 },
@@ -25,9 +30,46 @@ new Glide('.glide', {
   },
 }).mount();
 
-const isNavOpen = function () {
-  return navToggle.getAttribute('aria-expanded') === 'true';
+const getErrorMessage = function () {
+  const value = emailInputEl.value.trim();
+  if (!value) return 'Email is required';
+  if (!EMAIL_REGEX.test(value)) return 'Please insert a valid email';
+  return '';
 };
+
+const setError = function (message) {
+  if (!message) {
+    emailErrorEl.textContent = '';
+    emailErrorEl.setAttribute('aria-hidden', 'true');
+    return;
+  }
+
+  emailErrorEl.textContent = message;
+  emailErrorEl.removeAttribute('aria-hidden');
+};
+
+emailInputEl.addEventListener('input', () => {
+  currentError = getErrorMessage();
+  setError(currentError);
+});
+
+emailInputEl.addEventListener('blur', () => {
+  currentError = getErrorMessage();
+  setError(currentError);
+});
+
+form.addEventListener('submit', (e) => {
+  if (currentError) {
+    e.preventDefault();
+    setError(currentError);
+    return;
+  }
+
+  // Hurrah! form submitted 🎉
+  setError('');
+});
+
+const isNavOpen = () => navToggle.getAttribute('aria-expanded') === 'true';
 
 const updateOverlay = function (state) {
   overlay.toggleAttribute('hidden', !state);
@@ -58,14 +100,13 @@ const syncOverlay = function () {
 const resizeObserver = new ResizeObserver(() => {
   if (!resizeScheduled) {
     resizeScheduled = true;
+    document.body.classList.add('resizing');
     requestAnimationFrame(() => {
-      document.body.classList.add('resizing');
       syncOverlay();
-
       document.body.classList.remove('resizing');
       resizeScheduled = false;
     });
   }
 });
 
-resizeObserver.observe(document.body);
+resizeObserver.observe(document.documentElement);
