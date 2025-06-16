@@ -259,8 +259,10 @@
               id="email"
               placeholder="Updates in your inbox…"
               autocomplete="email"
+              pattern="^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,4}$"
+              aria-describedby="error-email"
               required />
-            <p aria-live="polite">Please insert a valid email</p>
+            <p id="error-email" class="error" aria-hidden="true"></p>
             <button type="submit" class="button">Go</button>
           </div>
         </form>
