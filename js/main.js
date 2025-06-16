@@ -110,3 +110,8 @@ const resizeObserver = new ResizeObserver(() => {
 });
 
 resizeObserver.observe(document.documentElement);
+
+// Disconnect the observer before page unload
+window.addEventListener('beforeunload', () => {
+  resizeObserver.disconnect();
+});
