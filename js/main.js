@@ -5,8 +5,7 @@ const form = document.querySelector('.footer__form');
 const emailInputEl = document.getElementById('email');
 const emailErrorEl = document.getElementById('error-email');
 
-let currentError = '';
-let resizeScheduled = false;
+let resizeTimeout;
 const MOBILE_BREAKPOINT = 870;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,4}$/;
 
@@ -49,19 +48,20 @@ const setError = function (message) {
 };
 
 emailInputEl.addEventListener('input', () => {
-  currentError = getErrorMessage();
-  setError(currentError);
+  const message = getErrorMessage();
+  setError(message);
 });
 
 emailInputEl.addEventListener('blur', () => {
-  currentError = getErrorMessage();
-  setError(currentError);
+  const message = getErrorMessage();
+  setError(message);
 });
 
 form.addEventListener('submit', (e) => {
-  if (currentError) {
+  const message = getErrorMessage();
+  if (message) {
     e.preventDefault();
-    setError(currentError);
+    setError(message);
     return;
   }
 
@@ -98,15 +98,15 @@ const syncOverlay = function () {
 };
 
 const resizeObserver = new ResizeObserver(() => {
-  if (!resizeScheduled) {
-    resizeScheduled = true;
-    document.body.classList.add('resizing');
+  document.body.classList.add('resizing');
+
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
     requestAnimationFrame(() => {
       syncOverlay();
       document.body.classList.remove('resizing');
-      resizeScheduled = false;
     });
-  }
+  }, 100);
 });
 
 resizeObserver.observe(document.documentElement);
